@@ -11,6 +11,11 @@ on:
 jobs:
   codacy:
     runs-on: ubuntu-24.04
+    # ---> EJERCICIO 2: Definición de la matriz <---
+    strategy:
+      matrix:
+        python-version: ['3.13', '3.14']
+    
     services:
       mariadb:
         image: mariadb:12.0.2
@@ -34,7 +39,8 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
-        python-version: '3.13'
+        # ---> EJERCICIO 2: Inyección de la variable <---
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
@@ -45,11 +51,12 @@ jobs:
     - name: Verificar nuevas versiones de dependencias instaladas
       run: pip list --outdated
 
+    # ---> EJERCICIO 3: Análisis de seguridad <---
     - name: Análisis de seguridad con pip-audit
       run: |
         pip install pip-audit
         pip-audit
-
+      
     - name: Run tests with coverage
       run: |
         coverage run -m pytest app/features/ --ignore-glob='*selenium*'
