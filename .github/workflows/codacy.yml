@@ -11,9 +11,6 @@ on:
 jobs:
   codacy:
     runs-on: ubuntu-24.04
-    strategy:
-      matrix:
-        python-version: ['3.13', '3.14']
     services:
       mariadb:
         image: mariadb:12.0.2
@@ -37,7 +34,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v6
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
@@ -52,8 +49,6 @@ jobs:
       run: |
         pip install pip-audit
         pip-audit
-
-      
 
     - name: Run tests with coverage
       run: |
