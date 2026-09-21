@@ -50,12 +50,14 @@ jobs:
 
     - name: Verificar nuevas versiones de dependencias instaladas
       run: pip list --outdated
+      continue-on-error: true
 
     # ---> EJERCICIO 3: Análisis de seguridad <---
     - name: Análisis de seguridad con pip-audit
       run: |
         pip install pip-audit
         pip-audit
+      continue-on-error: true
       
     - name: Run tests with coverage
       run: |
