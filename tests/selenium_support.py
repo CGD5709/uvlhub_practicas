@@ -7,7 +7,7 @@ Since splent_framework 1.7.1 the framework itself can drive a Selenium Grid:
 supplies uvlhub's defaults and its deterministic viewport, so the ten e2e
 files keep a single import point.
 
-What it adds on top of the framework helpers:
+What it adds on top of the framework helpers: prueba para commit
 
 * Defaults for the grid and target URLs matching the container names that
   ``docker/docker-compose.dev.yml`` fixes, applied only under Docker and only
